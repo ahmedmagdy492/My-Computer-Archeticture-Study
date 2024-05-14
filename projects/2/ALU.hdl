@@ -1,0 +1,83 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/2/ALU.hdl
+/**
+ * ALU (Arithmetic Logic Unit):
+ * Computes out = one of the following functions:
+ *                0, 1, -1,
+ *                x, y, !x, !y, -x, -y,
+ *                x + 1, y + 1, x - 1, y - 1,
+ *                x + y, x - y, y - x,
+ *                x & y, x | y
+ * on the 16-bit inputs x, y,
+ * according to the input bits zx, nx, zy, ny, f, no.
+ * In addition, computes the two output bits:
+ * if (out == 0) zr = 1, else zr = 0
+ * if (out < 0)  ng = 1, else ng = 0
+ */
+// Implementation: Manipulates the x and y inputs
+// and operates on the resulting values, as follows:
+// if (zx == 1) sets x = 0        // 16-bit constant
+// if (nx == 1) sets x = !x       // bitwise not
+// if (zy == 1) sets y = 0        // 16-bit constant
+// if (ny == 1) sets y = !y       // bitwise not
+// if (f == 1)  sets out = x + y  // integer 2's complement addition
+// if (f == 0)  sets out = x & y  // bitwise and
+// if (no == 1) sets out = !out   // bitwise not
+
+CHIP ALU {
+    IN  
+        x[16], y[16],  // 16-bit inputs        
+        zx, // zero the x input?
+        nx, // negate the x input?
+        zy, // zero the y input?
+        ny, // negate the y input?
+        f,  // compute (out = x + y) or (out = x & y)?
+        no; // negate the out output?
+    OUT 
+        out[16], // 16-bit output
+        zr,      // if (out == 0) equals 1, else 0
+        ng;      // if (out < 0)  equals 1, else 0
+
+    PARTS:
+    // if zx flag is set
+    Mux16(a=x, b=false, sel=zx, out=zxOut);
+
+    // if nx flag is set
+    Not16(in=zxOut, out=notZXOut);
+    Mux16(a=zxOut, b=notZXOut, sel=nx, out=nxOut);
+
+    // if zy flag is set
+    Mux16(a=y, b=false, sel=zy, out=zyOut);
+
+    // if ny flag is set
+    Not16(in=zyOut, out=notZYOut);
+    Mux16(a=zyOut, b=notZYOut, sel=ny, out=nyOut);
+
+    // if f flag is set to 1
+    Add16(a=nxOut, b=nyOut, out=xPlusY);
+    // if f flag is set to 0
+    And16(a=nxOut, b=nyOut, out=xAndY);
+    Mux16(a=xAndY, b=xPlusY, sel=f, out=fOut);
+
+    // if no flag is set
+    Not16(in=fOut, out=notFOut);
+    Mux16(a=fOut, b=notFOut, sel=no, out=outputPin);
+
+    // if output is 0, set the 0 flag to 1
+    If0Then1(a=outputPin, out=zrTmp);
+
+    Not(in=zrTmp, out=notZrTmp);
+    Not(in=notZrTmp, out=zr);
+
+    // if the output number is negative output 1
+    Not16(in=outputPin, out=notIn);
+    Inc16(in=notIn, out=twosCompl);
+    IsNegative(in=twosCompl, out=ngTmp);
+    Mux(a=ngTmp, b=false, sel=zrTmp, out=ng);
+
+    // final output
+    Not16(in=outputPin, out=tempNot);
+    Not16(in=tempNot, out=out);
+}

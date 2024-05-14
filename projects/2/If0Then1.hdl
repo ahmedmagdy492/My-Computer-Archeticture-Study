@@ -1,0 +1,23 @@
+CHIP If0Then1 {
+    IN a[16];
+    OUT out;
+
+    PARTS:
+    Or(a=a[0], b=a[1], out=or1);
+    Or(a=or1, b=a[2], out=or2);
+    Or(a=or2, b=a[3], out=or3);
+    Or(a=or3, b=a[4], out=or4);
+    Or(a=or4, b=a[5], out=or5);
+    Or(a=or5, b=a[6], out=or6);
+    Or(a=or6, b=a[7], out=or7);
+    Or(a=or7, b=a[8], out=or8);
+    Or(a=or8, b=a[9], out=or9);
+    Or(a=or9, b=a[10], out=or10);
+    Or(a=or10, b=a[11], out=or11);
+    Or(a=or11, b=a[12], out=or12);
+    Or(a=or12, b=a[13], out=or13);
+    Or(a=or13, b=a[14], out=or14);
+    Or(a=or14, b=a[15], out=or15);
+
+    Not(in=or15, out=out);
+}
