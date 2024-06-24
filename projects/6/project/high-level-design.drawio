@@ -1,0 +1,66 @@
+<mxfile host="65bd71144e">
+    <diagram id="0NRye3QOeuQs6MXLWhjH" name="Page-1">
+        <mxGraphModel dx="772" dy="313" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="7" style="edgeStyle=none;html=1;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="code &lt;br&gt;extractor" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="180" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="3" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="labels extractor" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="180" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="4" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="4" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="variables and labels resolver" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="170" width="100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=none;html=1;" parent="1" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="120" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="file content" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="205" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="only code" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="220" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="sympols&lt;br&gt;table" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="20" width="60" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="-validates labels syntax&lt;br&gt;-removes labels from code &lt;br&gt;-add labels to the sympols table &lt;br&gt;along with their addresses" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="270" width="190" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="code with no label definations" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="495" y="220" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="-finds symbols usages in the code&lt;br&gt;-ensure that they are exist in the symbols table&lt;br&gt;-if so they are replaced with addresses&lt;br&gt;-if not, then they are variables&lt;br&gt;&amp;nbsp;-then looks up the variables table&lt;br&gt;&amp;nbsp;-if the variable exists it replaces it with its address&lt;br&gt;&amp;nbsp;-if not exist will add it and add the address as the last address + 1&lt;br&gt;&amp;nbsp; and replaces the variable name with that address" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="270" width="370" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="variables&lt;br&gt;table" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="20" width="60" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="instructions&lt;br&gt;parser" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="180" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="-identifies the instruction type&lt;br&gt;-validates the instruction syntax&lt;br&gt;-convert assembly instruction to&amp;nbsp;&lt;br&gt;binary format&lt;br&gt;-add it to the final output" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1070" y="270" width="200" height="90" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

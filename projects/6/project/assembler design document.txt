@@ -1,0 +1,44 @@
+3 major components:
+-reading a file
+-parsing the file content
+-outputing a file
+
+parsing the file content:
+-2 types of statements:
+1.ignored statements (comment, white space)
+2.instruction statements (A-intstruction, C-instruction)
+3.labels
+
+comments and white space:
+-should be totally ignored
+
+labels:
+-rules:
+1.be all in uppercase
+2.should end with a colon ':'
+3.should contain only letters
+4.should be totally removed from source code
+5.should ensure whether it's already added to the sympols table or not
+6.should be added to the list of labels
+
+instructions:
+
+types of supported tokens:
+@, +, A, D, ;, JGT, JMP, JEQ, JGE, JLT, JNE, JLE
+
+A-Instruction
+rules:
+-should start with @
+-there should be no space after the @
+-allowed expressions after @ is:
+ 1.label
+ 2.literal number at most 16 bit numberr
+ 3.other lowercase labels are considered variables
+
+interpretation of A instruction:
+-first bit is 0
+-the next 15 bit is one of the following:
+ 1.if a label -> it should be replaced with an address from labels list
+ 2.if a constant -> convert the value directly into binary
+ 3.if a variable -> if the variable exists get its address, if the variable is a new one get the last added variable address + 1 then convert it to binary
+
